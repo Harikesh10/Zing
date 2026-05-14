@@ -722,10 +722,25 @@ function renderDishes(dishesArray) {
 const toggle = document.getElementById("themeToggle");
 const modeText = document.querySelector(".mode-text");
 
+// Initialize theme from local storage
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    toggle.checked = true;
+    const cartImage = document.getElementById("cart-image");
+    if (cartImage) cartImage.src = "./asset/cart1.svg";
+}
+
 toggle.addEventListener("change", () => {
     document.body.classList.toggle("dark-mode");
 
-   
+    const cartImage = document.getElementById("cart-image");
+    if(document.body.classList.contains("dark-mode")) {
+        cartImage.src = "./asset/cart1.svg";
+        localStorage.setItem("theme", "dark");
+    } else {
+        cartImage.src = "./asset/cart.svg";
+        localStorage.setItem("theme", "light");
+    }
 });
 
         
